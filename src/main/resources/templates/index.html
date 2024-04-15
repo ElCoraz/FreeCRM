@@ -5,34 +5,27 @@
       <title>
          Free CRM
       </title>
-      <link rel="stylesheet" href="/css/bootstrap.css">
+      <link rel="stylesheet" href="/css/all.min.css">
+      <link rel="stylesheet" href="/css/adminlte/adminlte.min.css">
    </head>
-   <body>
-        <noscript>
-        <h2 style="color: #ff0000">
-            Seems your browser doesn't support Javascript! Websocket relies on Javascript being enabled. Please enable Javascript and reload this page!
-        </h2>
-        </noscript>
+   <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    <noscript>
+    <h2 style="color: #ff0000">
+        Seems your browser doesn't support Javascript! Websocket relies on Javascript being enabled. Please enable Javascript and reload this page!
+    </h2>
+    </noscript>
 
-        <div id="main-content" class="container">
-            <div class="row">
-                <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="connect">WebSocket connection:</label>
-                        </div>
-                </div>
-                <div class="col-md-6">
-                        <button id="get" class="btn btn-default">Get</button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12" id="message">
-                </div>
-            </div>
-        </div>
-        <script src="/js/jquery-3.7.1.min.js"></script>
-        <script src="/js/bootstrap.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
-        <script src="/js/websocket.js"></script>
+    <div class="wrapper">
+
+      <preloader th:fragment="preloader" th:replace="~{preloader.html :: preloader }"></preloader>
+      <header th:fragment="header" th:replace="~{header.html :: header }"></header>
+      <content th:fragment="content" th:replace="~{content.html :: content }"></content>
+      <footer th:fragment="footer" th:replace="~{footer.html :: footer }"></footer>
+
+      <script src="/js/jquery-3.7.1.min.js"></script>
+      <script src="/js/websocket.js"></script>
+      <script src="/js/adminlte/adminlte.js"></script>
+      <script src="/js/menu.js"></script>
+    </div>   
    </body>
 </html>

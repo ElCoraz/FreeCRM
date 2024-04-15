@@ -11,7 +11,6 @@ ws.onclose = function (event) {
 
 $(function() {
     $("#get").click(function() {
-		//ws.send(JSON.stringify({'value' : "getData"}));
 		ws.send(JSON.stringify({'value' : "getHTML"}));
 	});
 });

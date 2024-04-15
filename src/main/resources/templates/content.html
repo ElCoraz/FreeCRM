@@ -1,0 +1,18 @@
+<content>
+    <div class="content-wrapper" style="min-height: 2128.26px;">
+        <!-- <button id="get" class="btn btn-default">Get</button>
+        <div id="message"></div> -->
+
+        <contentHeader th:fragment="contentHeader" th:replace="~{contentHeader.html :: contentHeader }"></contentHeader>
+
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <card th:fragment="card" th:replace="~{card.html :: card }"></card>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</content>

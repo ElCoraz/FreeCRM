@@ -1,0 +1,25 @@
+<card>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Title</h3>
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="card-body" style="display: block;">
+            Start creating your amazing application! </br>
+            <componentInput th:fragment="componentInput" th:replace="~{/component/componentInput.html :: componentInput }"></componentInput>
+            <componentLabelInput th:fragment="componentLabelInput" th:replace="~{/component/componentLabelInput.html :: componentLabelInput }"></componentLabelInput>
+            <componentTextarea th:fragment="componentTextarea" th:replace="~{/component/componentTextarea.html :: componentTextarea }"></componentTextarea>
+            <componentChooseFile th:fragment="componentChooseFile" th:replace="~{/component/componentChooseFile.html :: componentChooseFile }"></componentChooseFile>
+        </div>
+        <div class="card-footer" style="display: block;">
+            Footer
+        </div>
+    </div>
+</card>
