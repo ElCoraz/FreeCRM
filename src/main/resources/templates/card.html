@@ -11,12 +11,8 @@
                 </button>
             </div>
         </div>
-        <div class="card-body" style="display: block;">
-            Start creating your amazing application! </br>
-            <componentInput th:fragment="componentInput" th:replace="~{/component/componentInput.html :: componentInput }"></componentInput>
-            <componentLabelInput th:fragment="componentLabelInput" th:replace="~{/component/componentLabelInput.html :: componentLabelInput }"></componentLabelInput>
-            <componentTextarea th:fragment="componentTextarea" th:replace="~{/component/componentTextarea.html :: componentTextarea }"></componentTextarea>
-            <componentChooseFile th:fragment="componentChooseFile" th:replace="~{/component/componentChooseFile.html :: componentChooseFile }"></componentChooseFile>
+        <div id="content" class="card-body" style="display: block;">
+            <button id="get" class="btn btn-default">Get</button>
         </div>
         <div class="card-footer" style="display: block;">
             Footer
