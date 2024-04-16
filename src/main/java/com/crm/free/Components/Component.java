@@ -20,12 +20,56 @@ public class Component {
         this.name = name;
     }
 
+    public Component(HashMap<String, String> data) {
+        setFields(data);
+    }
+
     public Component(String json) {
         setFields(new JSONObject(json));
     }
 
     public Component(JSONObject jsonObject) {
         setFields(jsonObject);
+    }
+
+    @SuppressWarnings("deprecation")
+    protected void setFields(HashMap<String, String> data) {
+        data.forEach((key, value) -> {
+            Field[] fields = this.getClass().getDeclaredFields();
+
+            for(Field field:fields) {
+                if(!field.isAccessible()) {
+                    field.setAccessible(true);
+
+                    if (!field.getName().equals(key)) {
+                        continue;
+                    }
+                    
+                    Class<?> type = field.getType();
+    
+                    if(type.equals(Integer.class)) {
+                        try {
+                            field.set(this, value);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    } else if(type.equals(String.class)) {
+                        try {
+                            field.set(this, value);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    } else if (type.equals(Date.class)) {
+                        try {
+                            field.set(this, new Date(value));
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    field.setAccessible(false);
+                }
+            }
+        });
     }
 
     @SuppressWarnings("deprecation")
@@ -36,6 +80,10 @@ public class Component {
             for(Field field:fields) {
                 if(!field.isAccessible()) {
                     field.setAccessible(true);
+
+                    if (!field.getName().equals(key)) {
+                        continue;
+                    }
                     
                     Class<?> type = field.getType();
     
@@ -82,6 +130,10 @@ public class Component {
         }
 
         return template;
+    }
+
+    public String toHTML() throws IllegalArgumentException, IllegalAccessException {
+        return "";
     }
 
 }

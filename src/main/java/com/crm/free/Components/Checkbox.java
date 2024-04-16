@@ -30,6 +30,7 @@ public class Checkbox extends Component {
         setFields(jsonObject);
     }
 
+    @Override
     public String toHTML() throws IllegalArgumentException, IllegalAccessException {
         String template = """
             <div class="custom-control custom-checkbox">

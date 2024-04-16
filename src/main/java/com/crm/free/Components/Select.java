@@ -34,6 +34,7 @@ public class Select extends Component {
         setFields(jsonObject);
     }
 
+    @Override
     public String toHTML() throws IllegalArgumentException, IllegalAccessException {
         String options = "";
 

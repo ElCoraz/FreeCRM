@@ -28,6 +28,7 @@ public class Switch extends Component {
         setFields(jsonObject);
     }
 
+    @Override
     public String toHTML() throws IllegalArgumentException, IllegalAccessException {
         String template = """
             <div class="form-group">

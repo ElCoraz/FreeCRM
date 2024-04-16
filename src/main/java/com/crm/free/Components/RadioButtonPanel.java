@@ -28,6 +28,7 @@ public class RadioButtonPanel extends Component {
         setFields(jsonObject);
     }
 
+    @Override
     public String toHTML() throws IllegalArgumentException, IllegalAccessException {
         String buttons = "";
 

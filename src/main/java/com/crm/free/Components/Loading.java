@@ -28,6 +28,7 @@ public class Loading extends Component {
         setFields(jsonObject);
     }
 
+    @Override
     public String toHTML() throws IllegalArgumentException, IllegalAccessException {
         String template = """
             <div class="overlay-wrapper" id={id} name={name}>

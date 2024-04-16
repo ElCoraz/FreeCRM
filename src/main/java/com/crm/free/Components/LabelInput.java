@@ -1,5 +1,7 @@
 package com.crm.free.Components;
 
+import java.util.HashMap;
+
 import org.json.JSONObject;
 
 public class LabelInput extends Component {
@@ -22,6 +24,12 @@ public class LabelInput extends Component {
         this.placeholder = placeholder;
     }
 
+    public LabelInput(HashMap<String, String> data) {
+        super(data);
+
+        setFields(data);
+    }
+
     public LabelInput(String json) {
         super(json);
 
@@ -34,6 +42,7 @@ public class LabelInput extends Component {
         setFields(jsonObject);
     }
 
+    @Override
     public String toHTML() throws IllegalArgumentException, IllegalAccessException {
         String template = """
             <div class="form-group">

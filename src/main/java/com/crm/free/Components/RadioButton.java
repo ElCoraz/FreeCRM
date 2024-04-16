@@ -28,6 +28,7 @@ public class RadioButton extends Component {
         setFields(jsonObject);
     }
 
+    @Override
     public String toHTML() throws IllegalArgumentException, IllegalAccessException {
         String template = """
             <div class="custom-control custom-radio">

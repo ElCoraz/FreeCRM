@@ -1,5 +1,7 @@
 package com.crm.free.Components;
 
+import java.util.HashMap;
+
 import org.json.JSONObject;
 
 public class Button extends Component {
@@ -16,6 +18,12 @@ public class Button extends Component {
         this.text = text;
     }
 
+    public Button(HashMap<String, String> data) {
+        super(data);
+
+        setFields(data);
+    }
+
     public Button(String json) {
         super(json);
 
@@ -28,6 +36,7 @@ public class Button extends Component {
         setFields(jsonObject);
     }
 
+    @Override
     public String toHTML() throws IllegalArgumentException, IllegalAccessException {
         String template = """
                 <button type="button" class="btn btn-block btn-primary" id="{id}" name="{name}">{text}</button>

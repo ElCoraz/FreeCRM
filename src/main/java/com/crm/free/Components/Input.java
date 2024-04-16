@@ -30,6 +30,7 @@ public class Input extends Component {
         setFields(jsonObject);
     }
 
+    @Override
     public String toHTML() throws IllegalArgumentException, IllegalAccessException {
         String template = """
                 <input class="form-control form-control-lg" type="text" id="{id}" name="{name}" value="{value}" placeholder="{placeholder}">
