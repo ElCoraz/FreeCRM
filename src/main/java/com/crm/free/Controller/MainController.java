@@ -31,17 +31,14 @@ public class MainController {
 	}
 
 	private Component getClass(String name, @SuppressWarnings("rawtypes") HashMap values) throws NoSuchMethodException, SecurityException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		Class<?> c = Class.forName("com.crm.free.Components." + name);
-		Constructor<?> cons = c.getConstructor(HashMap.class);
-		return (Component) cons.newInstance(values);
-}
+		Class<?> clasz = Class.forName("com.crm.free.Components." + name);
+		Constructor<?> constructor = clasz.getConstructor(HashMap.class);
+		return (Component) constructor.newInstance(values);
+	}
 
 	@GetMapping("/read")
 	@ResponseBody
 	public String read() throws ParserConfigurationException, SAXException, IOException, IllegalArgumentException, IllegalAccessException, ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, InvocationTargetException {
-		
-		//Card card = null;
-
 		String xmlString = """
 			<root>
 				<Card 
@@ -54,18 +51,18 @@ public class MainController {
 						name="label_name_1"
 						label="label_label_1"
 						value="label_value_1"
-						placeholder="label_placeholder_1"></LabelInput>
+						placeholder="label_placeholder_1"/>
 					<LabelInput
 						id="label_id_2"
 						type="text"
 						name="label_name_2"
 						label="label_label_2"
 						value="label_value_2"
-						placeholder="label_placeholder_2"></LabelInput>
+						placeholder="label_placeholder_2"/>
 					<Button 
 						id="button_id_1"
 						name="button_name_1"
-						text="button_text_1"></Button>
+						text="button_text_1"/>
 				</Card>
 			</root>
 		""";
