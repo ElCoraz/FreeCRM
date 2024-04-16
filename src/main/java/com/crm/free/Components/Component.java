@@ -32,6 +32,8 @@ public class Component {
         setFields(jsonObject);
     }
 
+    public void add(Component component) { }
+
     @SuppressWarnings("deprecation")
     protected void setFields(HashMap<String, String> data) {
         data.forEach((key, value) -> {

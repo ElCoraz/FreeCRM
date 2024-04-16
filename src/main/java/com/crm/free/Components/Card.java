@@ -41,6 +41,7 @@ public class Card extends Component {
         setFields(jsonObject);
     }
 
+    @Override
     public void add(Component component) {
         elements.add(component);
     }

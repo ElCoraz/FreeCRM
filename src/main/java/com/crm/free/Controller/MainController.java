@@ -3,6 +3,8 @@ package com.crm.free.Controller;
 import java.io.IOException;
 import org.xml.sax.InputSource;
 import java.io.StringReader;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -18,10 +20,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import com.crm.free.Components.Button;
-import com.crm.free.Components.Card;
 import com.crm.free.Components.Component;
-import com.crm.free.Components.LabelInput;
 
 @Controller
 public class MainController {
@@ -31,15 +30,21 @@ public class MainController {
 		return "index";
 	}
 
+	private Component getClass(String name, @SuppressWarnings("rawtypes") HashMap values) throws NoSuchMethodException, SecurityException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		Class<?> c = Class.forName("com.crm.free.Components." + name);
+		Constructor<?> cons = c.getConstructor(HashMap.class);
+		return (Component) cons.newInstance(values);
+}
+
 	@GetMapping("/read")
 	@ResponseBody
-	public String read() throws ParserConfigurationException, SAXException, IOException, IllegalArgumentException, IllegalAccessException {
+	public String read() throws ParserConfigurationException, SAXException, IOException, IllegalArgumentException, IllegalAccessException, ClassNotFoundException, NoSuchMethodException, SecurityException, InstantiationException, InvocationTargetException {
 		
-		Card card = null;
+		//Card card = null;
 
 		String xmlString = """
 			<root>
-				<Form 
+				<Card 
 					id="id_form_1" 
 					title="Title form"
 					footer="Footer title">
@@ -61,7 +66,7 @@ public class MainController {
 						id="button_id_1"
 						name="button_name_1"
 						text="button_text_1"></Button>
-				</Form>
+				</Card>
 			</root>
 		""";
 
@@ -69,7 +74,7 @@ public class MainController {
 
 		Document document = builder.parse(new InputSource(new StringReader(xmlString)));
 
-		NodeList nodeList = document.getElementsByTagName("Form");
+		NodeList nodeList = document.getElementsByTagName("Card");
 
 		if (nodeList.getLength() == 1) {
 
@@ -87,7 +92,7 @@ public class MainController {
 				}
 			}
 
-			card = new Card(formValues);
+			Component card = getClass(form.getNodeName(), formValues);
 
 			NodeList childNodes = form.getChildNodes();
 
@@ -101,9 +106,7 @@ public class MainController {
 					if (element.getNodeType() != Node.ELEMENT_NODE) {
 						continue;
 					}
-
-					Component component	= null;
-
+		
 					NamedNodeMap attributes = element.getAttributes();
 
 					int countAttributes = attributes.getLength();
@@ -116,13 +119,7 @@ public class MainController {
 						}
 					}
 
-					if (element.getNodeName().equals("LabelInput")) {
-						component = new LabelInput(elementValues);
-					} else if (element.getNodeName().equals("Button")) {
-						component = new Button(elementValues);
-					}
-
-					card.add(component);
+					card.add(getClass(element.getNodeName(), elementValues));
 				}
 			}
 			return card.toHTML();
