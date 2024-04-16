@@ -1,6 +1,9 @@
 package com.crm.free.Configuration;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -8,17 +11,16 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+import org.xml.sax.SAXException;
 
-import com.crm.free.Components.Loading;
+import com.crm.free.XML;
 
 @Component
 public class SocketHandler extends TextWebSocketHandler {
 
-	//private Integer A = 1;
-
 	@Override
 	public void handleTextMessage(@SuppressWarnings("null") WebSocketSession session, @SuppressWarnings("null") TextMessage textMessage) 
-		throws InterruptedException, IOException, IllegalArgumentException, IllegalAccessException, JSONException {
+		throws InterruptedException, IOException, IllegalArgumentException, IllegalAccessException, JSONException, NoSuchMethodException, SecurityException, ClassNotFoundException, InstantiationException, InvocationTargetException, ParserConfigurationException, SAXException {
 
 		JSONObject jsonObject = new JSONObject(textMessage.getPayload());
 
@@ -29,10 +31,8 @@ public class SocketHandler extends TextWebSocketHandler {
 			response.put("value", "Hi how may we help you?");
 			session.sendMessage(new TextMessage(response.toString()));
 		} else if (value.equals("getHTML")) {
-			Loading loading = new Loading("1", "2", "Wait");
-
 			JSONObject response = new JSONObject();
-			response.put("value", loading.toHTML());
+			response.put("value", new XML().get());
 			session.sendMessage(new TextMessage(response.toString()));
 		}
 	}

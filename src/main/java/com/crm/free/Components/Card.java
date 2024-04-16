@@ -71,7 +71,7 @@ public class Card extends Component {
                             </button>
                         </div>
                     </div>
-                    <div id="content" class="card-body" style="display: block;">
+                    <div class="card-body" style="display: block;">
                     """
                         + content +     
                     """
