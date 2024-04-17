@@ -46,8 +46,20 @@ public class Card extends Component {
         elements.add(component);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public String toHTML() throws IllegalArgumentException, IllegalAccessException {
+    public String atClient() {
+        String template = """
+            <script>
+            </script>
+        """;    
+
+        return replace(template);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public String toHTML() {
         String content = "";
 
         for (Component component : elements) {

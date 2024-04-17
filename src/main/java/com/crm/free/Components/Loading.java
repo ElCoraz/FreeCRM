@@ -28,8 +28,20 @@ public class Loading extends Component {
         setFields(jsonObject);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public String toHTML() throws IllegalArgumentException, IllegalAccessException {
+    public String atClient() {
+        String template = """
+            <script>
+            </script>
+        """;    
+
+        return replace(template);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public String toHTML() {
         String template = """
             <div class="overlay-wrapper" id={id} name={name}>
                 <div class="overlay">

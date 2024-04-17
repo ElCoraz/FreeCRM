@@ -5,10 +5,12 @@ import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Random;
 
 import org.json.JSONObject;
 
-public class Component {
+public class Component implements HTML {
 
     @SuppressWarnings("unused")
     private String id = "";
@@ -120,22 +122,49 @@ public class Component {
         });
     }
 
-    protected String replace(String template) throws IllegalArgumentException, IllegalAccessException {
+    @SuppressWarnings("unchecked")
+    protected String replace(String template, HashMap<String, String> ... temps) {
+        try {
+
         Map<String, Object> values = new HashMap<>();
 
         for (Field field : this.getClass().getDeclaredFields()) {
             values.put(field.getName(), field.get(this).toString());
         }  
+        
+        for (HashMap<String, String> temp : temps) {
+            for (Entry<String, String> value : temp.entrySet()) {
+                values.put(value.getKey(), value.getValue().toString());
+            }
+        }
 
         for (Map.Entry<String, Object> value : values.entrySet()) {
             template = template.replace("{" + value.getKey() + "}", value.getValue().toString());
         }
-
+        
         return template;
+        } catch (Exception e) {
+            return e.getMessage();
+        }
+    }
+    
+    public String getTempName() {
+        return (new Random()).ints(97, 123)
+          .limit(10)
+          .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+          .toString();
     }
 
-    public String toHTML() throws IllegalArgumentException, IllegalAccessException {
-        return "";
+    @Override
+    public String atClient() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'atClient'");
+    }
+
+    @Override
+    public String toHTML() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'toHTML'");
     }
 
 }

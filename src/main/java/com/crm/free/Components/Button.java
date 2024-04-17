@@ -36,13 +36,34 @@ public class Button extends Component {
         setFields(jsonObject);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public String toHTML() throws IllegalArgumentException, IllegalAccessException {
+    public String atClient() {
+        String template = """
+            <script>
+                var {tempName} = $("#{id}");
+
+                {tempName}.on( "click", function() {
+                    alert( "Event click {name}" );
+                });
+            </script>
+        """;    
+
+        HashMap<String, String> temp = new HashMap<>();
+
+        temp.put("tempName", getTempName());
+
+        return replace(template, temp);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public String toHTML() {
         String template = """
                 <button type="button" class="btn btn-block btn-primary" id="{id}" name="{name}">{text}</button>
             """;    
 
-        return replace(template);
+        return replace(template) + atClient();
     }
  
 }

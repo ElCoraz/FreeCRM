@@ -42,8 +42,38 @@ public class LabelInput extends Component {
         setFields(jsonObject);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public String toHTML() throws IllegalArgumentException, IllegalAccessException {
+    public String atClient() {
+        String template = """
+            <script>
+                var {tempName} = $("#{id}");
+
+                {tempName}.on( "click", function() {
+                    alert( "Event click {name}" );
+                });
+                {tempName}.on( "dblclick", function() {
+                    alert( "Event dblclick {name}" );
+                });
+                {tempName}.on( "change", function() {
+                    alert( "Event change {name}" );
+                } );
+                {tempName}.on('input', function() {
+                    alert( "Event input {name}" );
+                });
+            </script>
+        """;    
+
+        HashMap<String, String> temp = new HashMap<>();
+
+        temp.put("tempName", getTempName());
+
+        return replace(template, temp);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public String toHTML() {
         String template = """
             <div class="form-group">
                 <label for="{id}">{label}</label>
@@ -51,7 +81,7 @@ public class LabelInput extends Component {
             </div>
         """;    
 
-        return replace(template);
+        return replace(template) + atClient();
     }
     
 }

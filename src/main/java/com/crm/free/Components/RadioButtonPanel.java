@@ -28,8 +28,20 @@ public class RadioButtonPanel extends Component {
         setFields(jsonObject);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public String toHTML() throws IllegalArgumentException, IllegalAccessException {
+    public String atClient() {
+        String template = """
+            <script>
+            </script>
+        """;    
+
+        return replace(template);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public String toHTML() {
         String buttons = "";
 
         for(int i = 0; i < labels.length; i++) {

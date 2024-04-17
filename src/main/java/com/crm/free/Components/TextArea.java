@@ -34,8 +34,20 @@ public class TextArea extends Component {
         setFields(jsonObject);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public String toHTML() throws IllegalArgumentException, IllegalAccessException {
+    public String atClient() {
+        String template = """
+            <script>
+            </script>
+        """;    
+
+        return replace(template);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public String toHTML() {
         String template = """
             <div class="form-group">
                 <label>Textarea</label>
