@@ -44,6 +44,9 @@ public class Button extends Component {
                 var {tempName} = $("#{id}");
 
                 {tempName}.on( "click", function() {
+
+                    var name = getName();
+                    
                     alert( "Event click {name}" );
                 });
             </script>
