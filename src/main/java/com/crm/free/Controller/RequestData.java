@@ -25,7 +25,6 @@ public class RequestData {
 
 			this.parametrs.put(parametr[0], parametr[1]);
 		}
-
     }
     
 }
