@@ -157,13 +157,11 @@ public class Component implements HTML {
 
     @Override
     public String atClient() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'atClient'");
     }
 
     @Override
     public String toHTML() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'toHTML'");
     }
 
