@@ -36,6 +36,20 @@ public class Button extends Component {
         setFields(jsonObject);
     }
 
+    /*
+    #atClient
+    function onClick() {
+        alert("Hello from " + this.name);
+
+        var amount = Amount(1, 2);
+    }
+
+    #atServer
+    function Amount(a, b) {
+        return a + b;
+    }
+    */
+
     @SuppressWarnings("unchecked")
     @Override
     public String atClient() {
