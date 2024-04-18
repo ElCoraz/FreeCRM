@@ -16,14 +16,19 @@ public class RequestData {
 		this.path = request.getRequestURI().split("/");
 		this.path = Arrays.copyOfRange(this.path, 1, this.path.length);
 
-		String[] query = request.getQueryString().split("&");
+		String queryString = request.getQueryString();
+		if (queryString != null) {
+			if (!queryString.isEmpty()) {
+				String[] query = request.getQueryString().split("&");
 
-		this.parametrs = new HashMap();
+				this.parametrs = new HashMap();
 
-		for(int i = 0; i < query.length; i++) {
-			String[] parametr = query[i].split("=");
+				for(int i = 0; i < query.length; i++) {
+					String[] parametr = query[i].split("=");
 
-			this.parametrs.put(parametr[0], parametr[1]);
+					this.parametrs.put(parametr[0], parametr[1]);
+				}
+			}
 		}
     }
     
