@@ -45,9 +45,9 @@ public class Button extends Component {
 
                 {tempName}.on( "click", function() {
 
-                    var name = getName();
+                    //var name = getName();
                     
-                    alert( "Event click {name}" );
+                    alert( "Event click {name}" + this.name );
                 });
             </script>
         """;    
